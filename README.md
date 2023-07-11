@@ -13,6 +13,13 @@ The statistical model is described here:
 - [] 1981 - 2022
 - [] 1991 - 2022
 
+### Study Domain
+
+| xmin | xmax | ymin | ymax |
+|------|------|------|------|
+| 3.431292 | 17.72012 | 42.55264 | 49.28426 |
+
+
 ### Station data
 
 Two possible data sources for precipitation time series:
@@ -41,7 +48,7 @@ SPI gridded data based on ERA5. Data are provided by the European Drought Observ
   
 *Esistono numerosi indici calcolabili da grandezze atmosferiche per identificare il potenziale convettivo di un determinato stato dell'atmosfera in una precisa località. Ma userei quelli semplificati, basati sulla temperatura. Uno interessante è il DeltaThetaEquivalente che misura la differenza di temperatura potenziale equivalente tra 2 strati dell'atmosfera, tra 500hPa e 850hPa. In pratica laddove questo gradiente è positivo si ha una inibizione della convezione,  mentre quando è positivo si ha una propensione. Ovviamente non è detto che dove ci sia propensione la convezione parta realmente. Ma comunque a scala più che mensile dovrebbe essere significativo il suo contributo magari dal cumulato della sua sola parte positiva.  Anche il campo delle fulminazioni funzionerebbe, ma sarebbe meno pratico da avere bello e pronto, al contrario del campo di DeltaThetaE.*
 
-## Study Domain
+
 
 ## SPI time series
 
