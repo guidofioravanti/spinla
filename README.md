@@ -17,7 +17,7 @@ Two possible data sources for precipitation time series:
 
 - [] SCIA (ISPRA)
   
-- [NO] ARCIS: data must be provided by the data owners 
+- [NO] ARCIS: **data must be provided by the data owners, a single data source from which to retrieve the data is not available** 
 
 ### Covariates
 
