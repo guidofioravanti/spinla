@@ -19,6 +19,8 @@ The statistical model is described here:
 |------|------|------|------|
 | 3.431292 | 17.72012 | 42.55264 | 49.28426 |
 
+![Study domain](./img/spinla_domain.png)
+
 
 ### Station data
 
