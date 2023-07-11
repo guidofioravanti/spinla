@@ -38,6 +38,10 @@ SPI gridded data based on ERA5. Data are provided by the European Drought Observ
 
 ### Covariates
 
+- [] **Indice di "stabilità" atmosferica mensile, per ogni punto: variance della 500hPa**
+
+- [] **Indice di weather disturbances: per ogni punto usiamo un intorno di 200-300km e usiamo il max del gradiente di 500hpa oppure 850 hPa**
+
 - [] **Indici di stabilità anticiclonica - variabilità Anticiclone Sub Tropicale**
 
   *Seguendo Davies et al., 1997 potremmo calcolare "the overall mean frequency and (b) standard deviation of days per half month with sea level pressure >1020 mb at each grid point" . Questo indice ci direbbe quando l'anticiclone si estende sull'area di interesse o anche nell'area più grande.*
