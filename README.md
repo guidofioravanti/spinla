@@ -36,7 +36,7 @@ Two possible data sources for precipitation time series:
 
 SPI gridded data based on ERA5. Data are provided by the European Drought Observatory.  
 
-### Covariates
+### Covariates (to be continued)
 
 - [] **Indice di "stabilità" atmosferica mensile, per ogni punto: variance della 500hPa**
 
