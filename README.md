@@ -1,6 +1,10 @@
 # spinla
 
-R-INLA for SPI data fusion (observations + ERA5 reanalysis)
+R-INLA for SPI data fusion (observations + ERA5 reanalysis). 
+
+The statistical model is described here:
+
+[Data Fusion in a Two-stage Spatio-Temporal Model using the INLA-SPDE Approach](https://arxiv.org/abs/2207.10027)
 
 ## Input data
 
@@ -17,19 +21,23 @@ Two possible data sources for precipitation time series:
 
 - [] SCIA (ISPRA)
   
-- [NO] ARCIS: **data must be provided by the data owners, a single data source from which to retrieve the data is not available** 
+- [NO] ARCIS: **data must be provided by the data owners, a single data source from which to retrieve the data is not available**
+
+### Gridded data
+
+SPI gridded data based on ERA5. Data are provided by the European Drought Observatory.  
 
 ### Covariates
 
-- [] Indici di stabilità anticiclonica - variabilità Anticiclone Sub Tropicale
+- [] **Indici di stabilità anticiclonica - variabilità Anticiclone Sub Tropicale**
 
   *Seguendo Davies et al., 1997 potremmo calcolare "the overall mean frequency and (b) standard deviation of days per half month with sea level pressure >1020 mb at each grid point" . Questo indice ci direbbe quando l'anticiclone si estende sull'area di interesse o anche nell'area più grande.*
 
-- [] StormTrack Atlantica - variabilità ciclonica
+- [] **StormTrack Atlantica - variabilità ciclonica**
   
 *La ciclonicità è sicuramente connessa all'intensità e alla tipologia della precipitazione. Potremmo usare l'indice cosiddetto di storm track "... storm track intensity primarily using high-pass-filtered 300-hPa meridional velocity (henceforth referred to as υ′) variance", che tiene conto dell'intensità e la posizione-passaggio di strutture cicloniche ( Wallace et al, 1998, Chang and Fu, 2002).*
 
-- [] Instabilità convettiva atmosferica - propensione alla convezione
+- [] **Instabilità convettiva atmosferica - propensione alla convezione**
   
 *Esistono numerosi indici calcolabili da grandezze atmosferiche per identificare il potenziale convettivo di un determinato stato dell'atmosfera in una precisa località. Ma userei quelli semplificati, basati sulla temperatura. Uno interessante è il DeltaThetaEquivalente che misura la differenza di temperatura potenziale equivalente tra 2 strati dell'atmosfera, tra 500hPa e 850hPa. In pratica laddove questo gradiente è positivo si ha una inibizione della convezione,  mentre quando è positivo si ha una propensione. Ovviamente non è detto che dove ci sia propensione la convezione parta realmente. Ma comunque a scala più che mensile dovrebbe essere significativo il suo contributo magari dal cumulato della sua sola parte positiva.  Anche il campo delle fulminazioni funzionerebbe, ma sarebbe meno pratico da avere bello e pronto, al contrario del campo di DeltaThetaE.*
 
