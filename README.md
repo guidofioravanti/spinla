@@ -8,10 +8,7 @@ The statistical model is described here:
 
 ## Input data
 
-### Temporal coverage
-
-- [] 1981 - 2022
-- [] 1991 - 2022
+The data (monthly precipitation time series) cover the time period 1981 - 2021.
 
 ### Study Domain
 
@@ -28,9 +25,19 @@ Two possible data sources for precipitation time series:
 
 - [] marsMET (JRC)
 
-- [] SCIA (ISPRA)
+- [X] SCIA (ISPRA) (**June 18th 2023: spi time series calculated using SCIA precipitation time series**)
   
 - [NO] ARCIS: **data must be provided by the data owners, a single data source from which to retrieve the data is not available**
+
+The following picture shows the spatial distribution for the SPI-3 time series (reference baseline 1991-2020).
+
+![Study domain](./img/map_spi3_1991_2020.png)
+
+The following picture shows the spatial distribution for the SPI-3 time series (reference baseline 1981-2010).
+
+![Study domain](./img/map_spi3_1981_2010.png)
+
+
 
 ### Gridded data
 
@@ -54,14 +61,18 @@ SPI gridded data based on ERA5. Data are provided by the European Drought Observ
   
 *Esistono numerosi indici calcolabili da grandezze atmosferiche per identificare il potenziale convettivo di un determinato stato dell'atmosfera in una precisa località. Ma userei quelli semplificati, basati sulla temperatura. Uno interessante è il DeltaThetaEquivalente che misura la differenza di temperatura potenziale equivalente tra 2 strati dell'atmosfera, tra 500hPa e 850hPa. In pratica laddove questo gradiente è positivo si ha una inibizione della convezione,  mentre quando è positivo si ha una propensione. Ovviamente non è detto che dove ci sia propensione la convezione parta realmente. Ma comunque a scala più che mensile dovrebbe essere significativo il suo contributo magari dal cumulato della sua sola parte positiva.  Anche il campo delle fulminazioni funzionerebbe, ma sarebbe meno pratico da avere bello e pronto, al contrario del campo di DeltaThetaE.*
 
-
-
 ## SPI time series
 
-- [] SPI-3
+- [x] SPI-3 (**June 18th 2023**)
 - [] SPI-6
 
 ## Software
+
+### SPI
+
+- [x] R SPEI package 
+
+### INLA
 
 - [] R-INLA
 - [X] INLAbru
