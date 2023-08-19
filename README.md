@@ -79,6 +79,12 @@ SPI gridded data based on ERA5. Data are provided by the European Drought Observ
 
 ## References
 
+### SPI
+
+McKee, T. B., Doesken, N. J. & Kleist, J. [The relationship of drought frequency and duration of time scales](https://www.droughtmanagement.info/literature/AMS_Relationship_Drought_Frequency_Duration_Time_Scales_1993.pdf). Tech. Rep.,182 American Meteorological Society (1993) 
+
+### Predictors
+
 Chang, E. K. M., and Y. Fu, 2002: **Interdecadal Variations in Northern Hemisphere Winter Storm Track Intensity**. J. Climate, 15, 642–658, https://doi.org/10.1175/1520-0442(2002)015<0642:IVINHW>2.0.CO;2.
 https://journals.ametsoc.org/view/journals/clim/15/6/1520-0442_2002_015_0642_ivinhw_2.0.co_2.xml 
  
