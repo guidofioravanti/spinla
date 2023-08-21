@@ -81,6 +81,8 @@ SPI gridded data based on ERA5. Data are provided by the European Drought Observ
 
 ### SPI
 
+Guttman, N. B., 1999. ACCEPTING THE STANDARDIZED PRECIPITATION INDEX:A CALCULATION ALGORITHM(https://onlinelibrary.wiley.com/doi/epdf/10.1111/j.1752-1688.1999.tb03592.x). JOURNAL OF THE AMERICAN WATER RESOURCES ASSOCIATION
+
 McKee, T. B., Doesken, N. J. & Kleist, J. [The relationship of drought frequency and duration of time scales](https://www.droughtmanagement.info/literature/AMS_Relationship_Drought_Frequency_Duration_Time_Scales_1993.pdf). Tech. Rep.,182 American Meteorological Society (1993) 
 
 ### Predictors
