@@ -1,12 +1,19 @@
+# SPI1
+
+## Baseline 1981 - 2010
+
+Number of stations: 140
+
+## Baseline 1991 - 2020
+
+Number of stations: 140
+
 # SPI3
 
 ## Baseline 1981 - 2010
 
-Number of stations: 113
+Number of stations: 140
 
-The number of rows in the file is: 54240 (40*113*12)
+## Baseline 1991 - 2020
 
-``` 
-library("tidyverse")
-read_delim("spi3_1981_2010.csv",delim=";",col_names=TRUE)->dati
-``` 
+Number of stations: 140
