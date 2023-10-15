@@ -6,21 +6,38 @@ library("sf")
 library("regioniItalia")
 
 list.files(pattern="^prcp.+csv$")->ffile
-spi.ref.start<-1981
-spi.ref.end<-2010
+spi.ref.start<-1991
+spi.ref.end<-2020
 spi.scale<-3
 MAX.NA<-5
 
 purrr::map(ffile,.f=function(.x){
   
+  str_remove(str_remove(.x,"^prcp."),"\\.serie_valide.csv$")->regione
+  
   read_delim(.x,delim=";",col_names = TRUE,col_types = cols(yy=col_integer(),mm=col_integer(),dd=col_integer(),.default = col_double())) %>%
-    filter(yy>=1981 & yy<=2021) %>%
+    filter(yy>=1980 & yy<=2021) %>%
     dplyr::select(yy,mm,dd,everything())->dati 
+  
+  paste(regione,names(dati)[!names(dati) %in% c("yy","mm","dd")],sep="_")->names(dati)[!names(dati) %in% c("yy","mm","dd")]
   
   ClimateData(dati,param = "pr")->cdati
   climatologici::aggregaCD(cdati,max.na = MAX.NA,rle.check = TRUE,max.size.block.na = MAX.NA)->mdati
   
+  #eliminiamo le colonne per cui non posso calcolare il climatologico annuale della precipitazione sul periodo 1981-2010
+  climatologici::climatologiciMensili(mdati,yearS = 1981,yearE = 2010,max.na = 6,rle.check = TRUE,max.size.block.na = 6)->mclimatol
+  climatologicoAnnuale(mclimatol)->yclimatol
+  purrr::map_lgl(yclimatol %>% dplyr::select(-yy),.f=\(.x) (is.na(.x) |is.infinite(.x)))->colonneDaEliminare2
+  mdati[,names(colonneDaEliminare2[!colonneDaEliminare2])]->mdati
+  
+  #eliminiamo le colonne per cui non posso calcolare il climatologico annuale della precipitazione sul periodo 1991-2020
+  climatologici::climatologiciMensili(mdati,yearS = 1991,yearE = 2020,max.na = 6,rle.check = TRUE,max.size.block.na = 6)->mclimatol
+  climatologicoAnnuale(mclimatol)->yclimatol
+  purrr::map_lgl(yclimatol %>% dplyr::select(-yy),.f=\(.x) (is.na(.x) |is.infinite(.x)))->colonneDaEliminare2
+  mdati[,names(colonneDaEliminare2[!colonneDaEliminare2])]->mdati
+  
   as.data.frame(mdati)->dati2
+  
   dati2 %>%
     dplyr::select(yy,mm)->yymm
   
@@ -30,40 +47,38 @@ purrr::map(ffile,.f=function(.x){
   purrr::map_dfc(1:ncol(seriePerSPI),.f=function(.x){
     
     #if(all(is.na(seriePerSPI[[.x]]))) return()
-    ts(seriePerSPI[[.x]],frequency = 12,start=1981)->myts
+    ts(seriePerSPI[[.x]],frequency = 12,start=1980)->myts
+    
     spi(myts,scale = spi.scale,na.rm=TRUE,ref.start =c(spi.ref.start,1),ref.end=c(spi.ref.end,12))->ts_spi
-    as.vector(ts_spi$fitted)
+    
+    data.frame(as.vector(ts_spi$fitted))->out
+    
+    names(out)<-names(seriePerSPI)[.x]
+    
+    out
     
   })->dfSPI
   
-
   
-  names(dfSPI)<-names(seriePerSPI)
   #elimino le colonne con solo NA
   purrr::map_lgl(dfSPI,.f=\(.x) all(is.na(.x)))->colonneDaEliminare
   dfSPI[,!colonneDaEliminare]  ->dfSPI
-  
-  #eliminiamo le colonne per cui non posso calcolare il "climatologico" dell'SPI (ovvero quelle serie con troppi buchi nel periodo di riferimento per SPI)
   bind_cols(yymm,dfSPI)->dfSPI
-  ClimateData(dfSPI,param = "pr")->mdati  
-  climatologici::climatologiciMensili(mdati,yearS = spi.ref.start,yearE = spi.ref.end,max.na = 6,rle.check = TRUE,max.size.block.na = 6)->mclimatol
-  climatologicoAnnuale(mclimatol)->yclimatol
-  purrr::map_lgl(yclimatol %>% dplyr::select(-yy),.f=\(.x) (is.na(.x) |is.infinite(.x)))->colonneDaEliminare2
-  print(.x)
 
-  dfSPI[,names(colonneDaEliminare2[!colonneDaEliminare2])]  ->dfSPI
-  bind_cols(yymm,dfSPI)
   
-})%>% reduce(.,.f=left_join,by=c("yy","mm"))->dfOut
+}) %>% reduce(.,.f=left_join,by=c("yy","mm"))->dfOut
 
-tidyr::pivot_longer(dfOut,cols=matches("[0-9]+"),names_to="SiteID",values_to = "spi")->dfSPI
+tidyr::pivot_longer(dfOut,cols=matches("^[a-z]+_[0-9]+$"),names_to="SpiID",values_to = "spi") %>%
+  filter(yy>=1981)->dfSPI
 
-unique(dfSPI$SiteID)->codici
+unique(dfSPI$SpiID)->codici
 
 #anagrafica
-read_delim("anagrafica.prcp.csv",delim=";",col_names = TRUE)->ana
+read_delim("anagrafica.prcp.csv",delim=";",col_names = TRUE) %>%
+  mutate(SpiID=paste(regione,SiteID,sep="_"))->ana
+
 ana %>%
-  filter(SiteID %in% codici)->ana
+  filter(SpiID %in% codici)->ana
 
 st_as_sf(ana,coords = c("Longitude","Latitude"),crs=4326)->sfAna
 
@@ -89,11 +104,7 @@ plot(st_geometry(nord4326),add=T)
 plot(st_geometry(sfAna_spi),add=TRUE)
 dev.off()
 
-write_delim(ana %>% filter(SiteID %in% sfAna_spi$SiteID),delim=";",col_names = TRUE,file = glue::glue("ana_spi{spi.scale}_{spi.ref.start}_{spi.ref.end}.csv"))
-write_delim(dfSPI %>% filter(SiteID %in% sfAna_spi$SiteID),delim=";",col_names = TRUE,file = glue::glue("spi{spi.scale}_{spi.ref.start}_{spi.ref.end}.csv"))
+write_delim(ana %>% filter(SpiID %in% sfAna_spi$SpiID),delim=";",col_names = TRUE,file = glue::glue("ana_spi{spi.scale}_{spi.ref.start}_{spi.ref.end}.csv"))
+write_delim(dfSPI %>% filter(SpiID %in% sfAna_spi$SpiID),delim=";",col_names = TRUE,file = glue::glue("spi{spi.scale}_{spi.ref.start}_{spi.ref.end}.csv"))
 
-
-dfSPI %>% filter(SiteID %in% sfAna_spi$SiteID)->dfPlot
-ggplot(data=dfPlot,aes(x=yy,y=spi))+
-  geom_boxplot()+
-  facet_wrap(~mm)
+print(nrow(ana %>% filter(SpiID %in% sfAna_spi$SpiID)))
