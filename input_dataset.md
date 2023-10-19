@@ -20,3 +20,9 @@ Elevation distribution of the selected time series.
 
 ![Origin of the input stations](./img/mars/nationality_of_the_input_data.png)
 
+## Number of stations
+
+Evolution in the number of stations. Note the drop in the year 2022.
+
+![Number of stations](./img/mars/conteggioStazioni.png)
+
