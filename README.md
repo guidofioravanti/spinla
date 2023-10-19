@@ -2,6 +2,8 @@
 
 R-INLA for SPI data fusion (observations + ERA5 reanalysis). 
 
+## Statistical model
+
 The statistical model is described here:
 
 [Data Fusion in a Two-stage Spatio-Temporal Model using the INLA-SPDE Approach](https://arxiv.org/abs/2207.10027)
