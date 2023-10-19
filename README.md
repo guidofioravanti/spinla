@@ -29,14 +29,9 @@ Two possible data sources for precipitation time series:
   
 - [NO] ARCIS: **data must be provided by the data owners, a single data source from which to retrieve the data is not available**
 
-The following picture shows the spatial distribution for the SPI-3 time series (reference baseline 1991-2020). A buffer of 10km was used to detect the potential input stations. 
+The following picture shows the spatial distribution for the selected time series from the MARS dataset. 
 
-![Study domain](./img/map_spi3_1991_2020.png)
-
-The following picture shows the spatial distribution for the SPI-3 time series (reference baseline 1981-2010).
-
-![Study domain](./img/map_spi3_1981_2010.png)
-
+![Study domain](./img/mars/selectedMarsStations.png)
 
 
 ### Gridded data
