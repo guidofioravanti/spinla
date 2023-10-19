@@ -10,35 +10,35 @@ The statistical model is described here:
 
 ## Input data
 
-The data (monthly precipitation time series) cover the time period 1981 - 2021.
+The data (monthly precipitation time series) cover the time period 1980 - 2021. The SPI time series cover the period 1981-2021.
 
 ### Study Domain
 
-| xmin | xmax | ymin | ymax |
-|------|------|------|------|
-| 3.431292 | 17.72012 | 42.55264 | 49.28426 |
+This is the extent of th study domain.
 
-![Study domain](./img/spinla_domain.png)
+| xmin     | xmax     | ymin     | ymax     |
+|------    |------    |------    |------    |
+| 3.431292 | 17.72012 | 42.55264 | 49.28426 |
 
 
 ### Station data
 
-Two possible data sources for precipitation time series:
+Three possible data sources for precipitation time series:
 
-- [X] marsMET (JRC): This dataset includes 65 stations (13 from Italy).
+- [X] marsMET (JRC): This dataset includes a large number of stations. For this work we identified 65 stations (13 from Italy).
 
 - [] SCIA (ISPRA) (**October 19th 2023: the spi time series calculated using SCIA precipitation time series have been discarded**)
   
 - [NO] ARCIS: **data must be provided by the data owners, a single data source from which to retrieve the data is not available**
 
-The following picture shows the spatial distribution for the selected time series from the MARS dataset. 
+The following picture shows the study domain and the spatial distribution for the selected time series from the MARS dataset. 
 
 ![Study domain](./img/mars/selectedMarsStations.png)
 
 
 ### Gridded data
 
-SPI gridded data based on ERA5. Hourlu precipitation data for the period 1981-2021 have been downloaded from [C3S](https://cds.climate.copernicus.eu/cdsapp#!/home). The data have been remapped to a regular latlon grid (EPSG:4326) using the CDO function "remapcon".
+SPI gridded data based on ERA5. Hourly precipitation data for the period 1981-2021 have been downloaded from [C3S](https://cds.climate.copernicus.eu/cdsapp#!/home). The data have been remapped to a regular latlon grid (EPSG:4326) using the CDO function "remapcon".
 
 ### Covariates (to be continued)
 
