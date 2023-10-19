@@ -4,3 +4,7 @@ The plots show the scatterplot of the MARS SPI versus the ERA5 SPI. When multipl
 
 
 ![Scatterplot](./img/spi/scatterplot_era5_vs_mars_spi1_1981_2010.png)
+
+![Scatterplot](./img/spi/scatterplot_era5_vs_mars_spi3_1991_2020.png)
+
+
