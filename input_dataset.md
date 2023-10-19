@@ -1,3 +1,3 @@
 # MARS time series
 
-!Available stations in MARS](./img/mars/marsStations.png)
+![Available stations in MARS](./img/mars/marsStations.png)
