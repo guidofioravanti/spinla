@@ -16,3 +16,7 @@ Elevation distribution of the selected time series.
 
 ![Elevation distribution of the selected time series](/img/mars/altitude_distribution.png)
 
+## Origin of the input stations
+
+![Origin of the input stations](./img/mars/nationality_of_the_input_data.png)
+
