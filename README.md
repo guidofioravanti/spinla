@@ -23,9 +23,9 @@ The data (monthly precipitation time series) cover the time period 1981 - 2021.
 
 Two possible data sources for precipitation time series:
 
-- [] marsMET (JRC)
+- [X] marsMET (JRC): This dataset includes 65 stations (13 from Italy).
 
-- [X] SCIA (ISPRA) (**June 18th 2023: spi time series calculated using SCIA precipitation time series**)
+- [] SCIA (ISPRA) (**October 19th 2023: the spi time series calculated using SCIA precipitation time series have been discarded**)
   
 - [NO] ARCIS: **data must be provided by the data owners, a single data source from which to retrieve the data is not available**
 
