@@ -22,7 +22,7 @@ Elevation distribution of the selected time series.
 
 ## Number of stations
 
-Evolution in the number of stations. In the previous version of the MARS dataset the year 2022 was characterized by a drop in the number of stations. The latest version solves this issue. No missing data affect sistematically the year 2022.
+Evolution in the number of stations. In the previous version of the MARS dataset the year 2022 was characterized by a drop in the number of stations. The latest version solves this issue. No missing data affect sistematically the year 2022. Total number of input stations: 68.
 
 ![Number of stations](./img/mars/conteggioStazioni.png)
 
